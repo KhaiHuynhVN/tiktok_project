@@ -1,0 +1,73 @@
+// menu no log in
+.menu {
+   cursor: pointer;
+   user-select: none;
+   width: 223px;
+   font-weight: 500;
+
+   li,
+   a {
+      display: flex;
+      align-items: center;
+      padding: 9px 16px;
+      color: var(--black);
+      background: var(--white);
+
+      &:hover {
+         background: rgb(255, 235, 235);
+      }
+   }
+
+   svg {
+      width: 2rem;
+      height: 2rem;
+      pointer-events: none;
+
+      & + span {
+         margin-left: 8px;
+      }
+   }
+
+   span {
+      pointer-events: none;
+
+      & + svg {
+         margin-left: 8px;
+      }
+   }
+}
+
+.menu-container {
+   overflow-y: auto;
+}
+
+// header
+.header {
+   position: relative;
+   // top: 0;
+   // left: 0;
+   // width: 100%;
+   margin-top: -8px;
+
+   button {
+      display: inline-flex;
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+      cursor: pointer;
+   }
+
+   span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      word-break: break-word;
+   }
+}

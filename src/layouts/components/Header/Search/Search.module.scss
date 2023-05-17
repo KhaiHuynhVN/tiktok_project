@@ -1,0 +1,103 @@
+.search {
+   height: 46px;
+   background: rgba(22, 24, 35, 0.06);
+   border-radius: 1000px;
+
+   &:focus-within {
+      border: 1.5px solid rgb(184, 184, 184);
+   }
+
+   form {
+      display: flex;
+      width: var(--width-center);
+      height: 100%;
+      border-radius: inherit;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      position: relative;
+   }
+
+   .btn-search {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top-right-radius: inherit;
+      border-bottom-right-radius: inherit;
+      border: none;
+      padding: 10px 16px;
+      margin: 0 -16px 0 0;
+      cursor: pointer;
+
+      &:hover {
+         background: rgb(220, 220, 220);
+      }
+      &:active {
+         background: rgb(209, 209, 209);
+      }
+   }
+
+   .btn-search svg {
+      width: 2.4rem;
+      height: 2.4rem;
+      color: rgba(22, 24, 35, 0.34);
+   }
+
+   #loading {
+      color: rgba(22, 24, 35, 0.34);
+      margin: 0 12px;
+   }
+
+   input {
+      width: 100%;
+      height: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 22px;
+      color: var(--black);
+      caret-color: var(--primary);
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      -ms-appearance: textfield;
+      appearance: textfield;
+
+      &:not(:placeholder-shown) ~ .btn-search svg {
+         color: black;
+      }
+   }
+
+   .close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 12px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+
+      svg {
+         width: 1.8rem;
+         height: 1.8rem;
+         fill: rgba(22, 24, 35, 0.34);
+      }
+   }
+}
+
+.spliter {
+   min-width: 1px;
+   height: 28px;
+   background: rgb(184, 184, 184);
+}
+
+.search-result-title {
+   display: block;
+   padding: 9px 16px;
+}
+
+.search-result {
+   width: var(--default-layout-header-center-width);
+   padding: 0 8px;
+}

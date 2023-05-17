@@ -1,0 +1,129 @@
+@import 'normalize.css';
+// default styles: font-family, line-height, font-size, text-rendering
+
+:root {
+   --primary: rgb(232, 18, 18);
+   --primary-hover: rgb(211, 17, 17);
+   --primary-active: rgb(190, 16, 16);
+   --outline-hover: rgb(228, 146, 146);
+   --outline-active: rgb(230, 123, 123);
+   --round: rgb(206, 206, 206);
+   --round-hover: rgb(228, 228, 228);
+   --round-active: rgb(215, 215, 215);
+   --round-border-hover: rgb(173, 173, 173);
+   // color
+   --black: black;
+   --white: white;
+   // Default layout
+   --default-layout-header-height: 60px;
+   --default-layout-header-center-width: 415px;
+   --default-layout-sidebar-width: 240px;
+   // font family
+   --font-family: 'ProximaNova', sans-serif;
+}
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+html {
+   font-size: 62.5%;
+
+   & *::-webkit-scrollbar {
+      border-radius: 0;
+      width: 8px;
+   }
+
+   & *::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(22, 24, 35, 0.1);
+   }
+
+   & *::-webkit-scrollbar-track {
+      border-radius: 0;
+      background-color: rgba(0, 0, 0, 0);
+   }
+}
+
+body {
+   font-family: var(--font-family);
+   font-size: 1.6rem;
+   line-height: 1.5;
+   text-rendering: optimizeSpeed;
+   height: 1000px;
+   overflow: overlay;
+}
+
+button,
+input {
+   font-family: var(--font-family);
+   outline: none;
+   border: none;
+   background: transparent;
+}
+
+a[href] {
+   text-decoration: none;
+}
+
+// fonts embedded
+@font-face {
+   font-family: ProximaNova;
+   src: url('../../assets/fonts/Proxima-Nova-Bold.woff');
+   font-weight: 600;
+}
+@font-face {
+   font-family: ProximaNova;
+   src: url('../../assets/fonts/Proxima-Nova-Bold.woff2');
+   font-weight: 700;
+}
+@font-face {
+   font-family: ProximaNova;
+   src: url('../../assets/fonts/Proxima-Nova-Regular.woff2');
+   font-weight: normal;
+}
+@font-face {
+   font-family: ProximaNova;
+   src: url('../../assets/fonts/Proxima-Nova-Semibold.woff2');
+   font-weight: 500;
+}
+@font-face {
+   font-family: Sofiapro;
+   src: url('../../assets/fonts/sofiapro-bold.woff');
+   font-weight: 600;
+}
+@font-face {
+   font-family: Sofiapro;
+   src: url('../../assets/fonts/sofiapro-bold.woff2');
+   font-weight: 700;
+}
+@font-face {
+   font-family: Sofiapro;
+   src: url('../../assets/fonts/sofiapro-regular.woff');
+   font-weight: normal;
+}
+@font-face {
+   font-family: Sofiapro;
+   src: url('../../assets/fonts/sofiapro-semibold.otf');
+   font-weight: 500;
+}
+
+// tippy tooltip
+body {
+   .tippy-box {
+      background: rgba(84, 84, 84, 0.92);
+      border-radius: 8px;
+   }
+
+   .tippy-content {
+      font-weight: 600;
+      line-height: 2.2rem;
+      padding: 8px;
+   }
+
+   .tippy-arrow {
+      color: rgba(84, 84, 84, 0.92);
+   }
+}
