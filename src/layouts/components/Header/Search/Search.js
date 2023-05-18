@@ -2,14 +2,10 @@ import HeadLessTippy from '@tippyjs/react/headless';
 import { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
-import { useDebounce } from '~/hooks';
-
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItems from '~/components/AccountItems';
 import { CloseIcon, SearchIcon } from '~/components/Icons';
 import * as services from '~/services';
-
-import images from '~/assets/images';
 
 import styles from './Search.module.scss';
 
@@ -21,53 +17,36 @@ function Search() {
    const [showResult, setShowResult] = useState(false);
    const [showLoading, setShowLoading] = useState(false);
 
-   const debounce = useDebounce(inputSearch, 700);
+   let timer;
 
    const inputSearchEl = useRef();
 
    useEffect(() => {
-      if (!debounce.trim()) {
+      if (!inputSearch.trim()) {
          setShowResult(false);
+         setSearchResult([]);
+         setShowLoading(false);
          return;
       }
 
+      setShowResult(true);
+
       const fetchApi = async () => {
          setShowLoading(true);
+         setSearchResult([]);
 
-         const result = await services.search(debounce);
-         setSearchResult(result);
+         const result = await services.search(inputSearch);
+         inputSearchEl.current.value.trim() && setSearchResult(result);
 
          setShowLoading(false);
       };
-      fetchApi();
-   }, [debounce]);
 
-   useEffect(() => {
-      inputSearch.trim() ? setShowResult(true) : setShowResult(false);
-      !inputSearch.trim() &&
-         setSearchResult([
-            {
-               id: 2,
-               first_name: 'Minecraft',
-               last_name: 'PE',
-               full_name: 'Minecraft PE',
-               nickname: 'minecraft_pocket_edition',
-               avatar: images.defaultAvatar,
-               bio: '✨ 1998 ✨\nVietnam 🇻🇳\nĐỪNG LẤY VIDEO CỦA TÔI ĐI SO SÁNH NỮA. XIN HÃY TÔN TRỌNG !',
-               tick: true,
-               followings_count: 1,
-               followers_count: 60,
-               likes_count: 1000,
-               website_url: 'https://fullstack.edu.vn/',
-               facebook_url: '',
-               youtube_url: '',
-               twitter_url: '',
-               instagram_url: '',
-               created_at: '2022-05-05 23:10:05',
-               updated_at: '2022-05-05 23:11:39',
-            },
-         ]);
       // eslint-disable-next-line react-hooks/exhaustive-deps
+      timer = setTimeout(() => {
+         fetchApi();
+      }, 700);
+
+      return () => clearTimeout(timer);
    }, [inputSearch]);
 
    const handleInputSearch = (el) => {
