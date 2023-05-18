@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItems from '~/components/AccountItems';
+import { RenderAccountItem } from '~/components/AccountItems';
 import { CloseIcon, SearchIcon } from '~/components/Icons';
 import * as services from '~/services';
 
@@ -76,10 +76,7 @@ function Search() {
                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                   <PopperWrapper scrollbar>
                      <span className={cx('search-result-title')}>Accounts</span>
-                     {searchResult.length > 0 &&
-                        searchResult.map((result) => (
-                           <AccountItems key={result.id} data={result} />
-                        ))}
+                     <RenderAccountItem data={searchResult} />
                   </PopperWrapper>
                </div>
             )}

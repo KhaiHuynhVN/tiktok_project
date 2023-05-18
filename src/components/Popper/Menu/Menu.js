@@ -32,6 +32,19 @@ function Menu({ children, items = [], onChange = () => {} }) {
       });
    };
 
+   const handleBack = () => setHistory((pre) => pre.slice(0, history.length - 1));
+
+   const renderMenu = (attrs) => (
+      <div className={cx('menu')} tabIndex="-1" {...attrs}>
+         <PopperWrapper>
+            {current.title && <Header title={current.title} onClick={handleBack} />}
+            <div className={cx({ 'menu-container': history.length > 1 })}>{renderItems()}</div>
+         </PopperWrapper>
+      </div>
+   );
+
+   const handleResetMenu = () => setHistory((pre) => [pre[0]]);
+
    return (
       // Wrap thẻ <div> cho HeadLessTippy là để fix warning của Tippy
       <div>
@@ -41,22 +54,8 @@ function Menu({ children, items = [], onChange = () => {} }) {
             delay={[0, 600]}
             offset={[20, 12]}
             placement="bottom-end"
-            render={(attrs) => (
-               <div className={cx('menu')} tabIndex="-1" {...attrs}>
-                  <PopperWrapper>
-                     {current.title && (
-                        <Header
-                           title={current.title}
-                           onClick={() => setHistory((pre) => pre.slice(0, history.length - 1))}
-                        />
-                     )}
-                     <div className={cx({ 'menu-container': history.length > 1 })}>
-                        {renderItems()}
-                     </div>
-                  </PopperWrapper>
-               </div>
-            )}
-            onHidden={() => setHistory((pre) => [pre[0]])}
+            render={renderMenu}
+            onHidden={handleResetMenu}
          >
             {children}
          </HeadLessTippy>
