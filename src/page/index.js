@@ -1,15 +1,6 @@
-import Home from '~/page/Home';
-import Following from '~/page/Following';
-import Profile from '~/page/Profile';
-import Upload from '~/page/Upload';
-import Search from '~/page/Search';
-
-const pages = {
-   Home,
-   Following,
-   Profile,
-   Upload,
-   Search,
-};
-
-export default pages;
+export { default as Home } from './Home';
+export { default as Following } from './Following';
+export { default as Live } from './Live';
+export { default as Profile } from './Profile';
+export { default as Search } from './Search';
+export { default as Upload } from './Upload';

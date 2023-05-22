@@ -57,7 +57,8 @@ function Search() {
       e.preventDefault();
       setInputSearch('');
       inputSearchEl.current.focus();
-      setSearchResult(false);
+      setShowResult(false);
+      setSearchResult([]);
    };
 
    const handleFocusInputSearch = () => {

@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
-import Search from './Search';
+import Search from '../Search';
 import * as config from '~/config';
 
 import {
