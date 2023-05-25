@@ -11,9 +11,10 @@ import {
    LiveIconOutline,
    LiveIconSolid,
 } from '~/components/Icons';
+import { routes } from '~/config';
+import AccountList from '~/components/AccountList/AccountList';
 
 import styles from './Sidebar.module.scss';
-import { routes } from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -49,6 +50,8 @@ function Sidebar() {
                   to={routes.live}
                />
             </Menu>
+            <AccountList title="Following accounts" titleBtn="See all" isDisableTippy />
+            <AccountList title="Suggeted accounts" />
          </div>
       </aside>
    );

@@ -1,4 +1,6 @@
 .wrapper {
+   margin-bottom: 8px;
+
    span {
       display: flex;
       align-items: center;
@@ -45,7 +47,7 @@
    }
 
    &:hover {
-      background-color: rgba(232, 18, 18, 0.1);
+      background-color: var(--hover-effect);
       transition: 0.25s;
    }
 }
