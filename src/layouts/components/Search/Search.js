@@ -6,86 +6,21 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { RenderAccountItem } from '~/components/AccountItems';
 import { CloseIcon, SearchIcon } from '~/components/Icons';
 import * as services from '~/services';
+import {
+   initState,
+   reducer,
+   setSearchResult,
+   setShowLoading,
+   setShowResult,
+   setValue,
+} from './useReducer';
 
 import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
-const initState = {
-   value: '',
-   searchResult: [],
-   showResult: false,
-   showLoading: false,
-};
-
-const SET_VALUE = 'set_value';
-const SET_SEARCH_RESULT = 'set_search_result';
-const SET_SHOW_RESULT = 'set_show_result';
-const SET_SHOW_LOADING = 'set_show_loading';
-
-const setValue = (payload) => {
-   return {
-      type: SET_VALUE,
-      payload,
-   };
-};
-
-const setSearchResult = (payload) => {
-   return {
-      type: SET_SEARCH_RESULT,
-      payload,
-   };
-};
-
-const setShowResult = (payload) => {
-   return {
-      type: SET_SHOW_RESULT,
-      payload,
-   };
-};
-
-const setShowLoading = (payload) => {
-   return {
-      type: SET_SHOW_LOADING,
-      payload,
-   };
-};
-
-const reducer = (state, action) => {
-   switch (action.type) {
-      case SET_VALUE:
-         return {
-            ...state,
-            value: action.payload,
-         };
-      case SET_SEARCH_RESULT:
-         return {
-            ...state,
-            searchResult: action.payload,
-         };
-      case SET_SHOW_RESULT:
-         return {
-            ...state,
-            showResult: action.payload,
-         };
-      case SET_SHOW_LOADING:
-         return {
-            ...state,
-            showLoading: action.payload,
-         };
-      default:
-         throw new Error('Lỗi!');
-   }
-};
-
 function Search() {
-   // const [inputSearch, setInputSearch] = useState('');
-   // const [searchResult, setSearchResult] = useState([]);
-   // const [showResult, setShowResult] = useState(false);
-   // const [showLoading, setShowLoading] = useState(false);
-
    const [state, dispatch] = useReducer(reducer, initState);
-
    const { value, searchResult, showLoading, showResult } = state;
 
    let timer;
@@ -120,9 +55,9 @@ function Search() {
       return () => clearTimeout(timer);
    }, [value]);
 
-   // const handleInputSearch = (el) => {
-   //    !el.value.startsWith(' ') && setInputSearch(el.value);
-   // };
+   const handleInputSearch = (value) => {
+      !value.startsWith(' ') && dispatch(setValue(value));
+   };
 
    const handleDeleteInputValue = (e) => {
       e.preventDefault();
@@ -163,7 +98,7 @@ function Search() {
                      placeholder="Search accounts and videos"
                      spellCheck={false}
                      onFocus={() => handleFocusInputSearch()}
-                     onChange={(e) => dispatch(setValue(e.target.value))}
+                     onChange={(e) => handleInputSearch(e.target.value)}
                   />
 
                   {showLoading && (
