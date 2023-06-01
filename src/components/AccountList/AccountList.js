@@ -19,42 +19,44 @@ function AccountList({ title, titleBtn = 'See more', data, isDisableTippy = fals
       <div className={cx('wrapper')}>
          <h2>{title}</h2>
          <ul className={cx('account-list')}>
-            {a.map((item, index) => (
-               <TippyHeadLess
-                  disabled={isDisableTippy}
-                  key={index}
-                  hideOnClick={false}
-                  interactive
-                  offset={[0, -2]}
-                  delay={[600, 0]}
-                  placement="bottom"
-                  appendTo={() => document.body}
-                  render={(attrs) => {
-                     return (
-                        <div className={cx('menu')} tabIndex="-1" {...attrs}>
-                           <PopperWrapper>
-                              <AccountPreview />
-                           </PopperWrapper>
-                        </div>
-                     );
-                  }}
-               >
-                  <li>
-                     <Link className={cx('account-item')}>
-                        <Image src="" />
-                        <div className={cx('info')}>
-                           <div className={cx('nickname')}>
-                              <span>
-                                 jediclasherdddddddddddddddddddddddddddddddddddddddddddddd d
-                              </span>
-                              <CheckedIcon />
+            {a.map((item, index) => {
+               return (
+                  <TippyHeadLess
+                     disabled={isDisableTippy}
+                     hideOnClick={false}
+                     interactive
+                     offset={[0, -2]}
+                     key={index}
+                     delay={[600, 0]}
+                     placement="bottom"
+                     appendTo={() => document.body}
+                     render={(attrs) => {
+                        return (
+                           <div className={cx('menu')} tabIndex="-1" {...attrs}>
+                              <PopperWrapper>
+                                 <AccountPreview />
+                              </PopperWrapper>
                            </div>
-                           <span className={cx('name')}>Jedi CLasher</span>
-                        </div>
-                     </Link>
-                  </li>
-               </TippyHeadLess>
-            ))}
+                        );
+                     }}
+                  >
+                     <li>
+                        <Link className={cx('account-item')}>
+                           <Image src="" />
+                           <div className={cx('info')}>
+                              <div className={cx('nickname')}>
+                                 <span>
+                                    jediclasherdddddddddddddddddddddddddddddddddddddddddddddd d
+                                 </span>
+                                 <CheckedIcon />
+                              </div>
+                              <span className={cx('name')}>Jedi CLasher</span>
+                           </div>
+                        </Link>
+                     </li>
+                  </TippyHeadLess>
+               );
+            })}
          </ul>
          <button className={cx('more-btn')}>{titleBtn}</button>
       </div>
