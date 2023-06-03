@@ -12,6 +12,7 @@ const publicRoutes = [
    { path: config.routes.upload, component: pages.Upload, layout: HeaderOnly },
    { path: config.routes.search, component: pages.Search, layout: FloatLayout },
    { path: config.routes.live, component: pages.Live },
+   { path: config.routes.explore, component: pages.Explore },
 ];
 
 const privateRoutes = [];

@@ -1,0 +1,15 @@
+.container {
+  display: block;
+  padding-right: 8px;
+  width: var(--default-layout-sidebar-width);
+  background: var(--white);
+  overflow-y: auto;
+  max-height: calc(100vh - var(--default-layout-header-height));
+}
+
+.wrapper {
+  padding-top: 20px;
+  padding-bottom: 26px;
+  padding-left: 8px;
+  min-height: 100%;
+}/*# sourceMappingURL=Sidebar.module.css.map */

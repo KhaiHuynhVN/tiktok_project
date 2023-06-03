@@ -5,9 +5,11 @@ import images from '~/assets/images';
 
 const Image = forwardRef(
    ({ src = images.defaultImage, className, alt = 'tiktok_image', ...props }, ref) => {
+      const classes = classNames('wrapper', className);
+
       return (
          <img
-            className={classNames('wrapper', className)}
+            className={classes}
             ref={ref}
             alt={alt}
             {...props}

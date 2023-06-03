@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  margin-top: var(--default-layout-header-height);
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 400;
+  flex: 1;
+  background: pink;
+}/*# sourceMappingURL=DefaultLayout.module.css.map */

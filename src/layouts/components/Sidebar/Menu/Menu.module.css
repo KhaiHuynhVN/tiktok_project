@@ -1,0 +1,68 @@
+.wrapper {
+  margin-bottom: 8px;
+}
+.wrapper span {
+  display: flex;
+  align-items: center;
+}
+.wrapper span + .title {
+  margin-left: 8px;
+}
+.wrapper .title {
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+}
+.wrapper .title + span {
+  margin-left: 8px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  color: currentColor;
+  padding: 8px;
+}
+.menu-item .active-icon {
+  display: none;
+}
+.menu-item.active {
+  color: var(--primary);
+}
+.menu-item.active .left-icon {
+  display: none;
+}
+.menu-item.active .active-icon {
+  display: flex;
+}
+.menu-item:hover {
+  background-color: var(--hover-effect);
+  transition: 0.25s;
+}
+
+.circle {
+  --width: 6px;
+  --offset: 2px;
+  position: absolute;
+  top: var(--offset);
+  left: calc(100% + var(--offset));
+  width: var(--width);
+  height: var(--width);
+  background-color: var(--primary);
+  border-radius: 1000px;
+}
+
+.new {
+  height: 20px;
+  margin-left: 6px;
+  padding: 0 8px;
+  background-color: var(--primary);
+  border-radius: 1000px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 2rem;
+  color: var(--white);
+}/*# sourceMappingURL=Menu.module.css.map */

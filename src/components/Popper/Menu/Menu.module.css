@@ -1,0 +1,63 @@
+.menu {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  width: 223px;
+  font-weight: 500;
+}
+.menu li,
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 9px 16px;
+  color: var(--black);
+  background: var(--white);
+}
+.menu li:hover,
+.menu a:hover {
+  background: rgb(255, 235, 235);
+}
+.menu svg {
+  width: 2rem;
+  height: 2rem;
+  pointer-events: none;
+}
+.menu svg + span {
+  margin-left: 8px;
+}
+.menu span {
+  pointer-events: none;
+}
+.menu span + svg {
+  margin-left: 8px;
+}
+
+.menu-container {
+  overflow-y: auto;
+}
+
+.header {
+  position: relative;
+  margin-top: -8px;
+}
+.header button {
+  display: inline-flex;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  cursor: pointer;
+}
+.header span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-break: break-word;
+}/*# sourceMappingURL=Menu.module.css.map */

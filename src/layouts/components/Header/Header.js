@@ -29,7 +29,7 @@ import '~/fontawesome/font-awesome-pro-v6-6.2.0/css/all.min.css';
 const cx = classNames.bind(styles);
 
 function Header() {
-   const currentUser = true;
+   const currentUser = false;
 
    const MENU_ITEMS = [
       {

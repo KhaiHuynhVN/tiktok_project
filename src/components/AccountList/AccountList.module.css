@@ -1,0 +1,101 @@
+.wrapper {
+  --title-padding: 8px;
+  position: relative;
+  padding: 16px 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 20px;
+}
+.wrapper h2 {
+  font-size: 1.4rem;
+  padding: 0 var(--title-padding);
+  margin-bottom: 8px;
+  font-weight: 500;
+  line-height: 20px;
+  color: rgba(22, 24, 35, 0.75);
+}
+.wrapper::before {
+  content: "";
+  position: absolute;
+  width: calc(100% - var(--title-padding) * 2);
+  top: 0;
+  left: var(--title-padding);
+  height: 1px;
+  background: rgba(22, 24, 35, 0.12);
+}
+
+.account-list li {
+  display: block;
+}
+
+.account-item {
+  display: flex;
+  align-items: center;
+  transition: 0.25s;
+  padding: 8px;
+}
+.account-item img {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 1000px;
+}
+.account-item:hover {
+  background: var(--hover-effect);
+}
+
+.info {
+  flex: 1;
+  overflow: hidden;
+}
+.info span {
+  display: block;
+}
+
+.nickname {
+  display: flex;
+  align-items: center;
+}
+.nickname span {
+  margin-top: -3px;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 22px;
+  color: var(--black);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.nickname svg {
+  flex-shrink: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-left: 4px;
+  margin-bottom: 3px;
+  color: rgb(32, 213, 236);
+}
+
+.name {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 9px;
+  color: rgba(22, 24, 35, 0.75);
+}
+
+.more-btn {
+  margin-top: 8px;
+  padding: 0 8px;
+  cursor: pointer;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 20px;
+}
+
+.none {
+  pointer-events: none;
+  opacity: 0;
+}/*# sourceMappingURL=AccountList.module.css.map */
