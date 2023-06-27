@@ -1,25 +1,25 @@
-import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import TippyHeadLess from '@tippyjs/react/headless';
+import classNames from "classnames/bind";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import TippyHeadLess from "@tippyjs/react/headless";
 
-import { CheckedIcon } from '../Icons';
-import { Wrapper as PopperWrapper } from '../Popper';
-import Image from '~/components/Image/Image';
-import AccountPreview from './AccountPreview';
+import { CheckedIcon } from "../Icons";
+import { Wrapper as PopperWrapper } from "../Popper";
+import Image from "~/components/Image/Image";
+import AccountPreview from "./AccountPreview";
 
-import styles from './AccountList.module.scss';
+import styles from "./AccountList.module.scss";
 
 const cx = classNames.bind(styles);
 
 const a = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
-function AccountList({ title, titleBtn = 'See more', data, isDisableTippy = false }) {
+function AccountList({ title, titleBtn = "See more", data = a, isDisableTippy = false }) {
    return (
-      <div className={cx('wrapper')}>
+      <div className={cx("wrapper")}>
          <h2>{title}</h2>
-         <ul className={cx('account-list')}>
-            {a.map((item, index) => {
+         <ul className={cx("account-list")}>
+            {data.map((item, index) => {
                return (
                   <TippyHeadLess
                      disabled={isDisableTippy}
@@ -32,7 +32,7 @@ function AccountList({ title, titleBtn = 'See more', data, isDisableTippy = fals
                      appendTo={() => document.body}
                      render={(attrs) => {
                         return (
-                           <div className={cx('menu')} tabIndex="-1" {...attrs}>
+                           <div tabIndex="-1" {...attrs}>
                               <PopperWrapper>
                                  <AccountPreview />
                               </PopperWrapper>
@@ -41,16 +41,16 @@ function AccountList({ title, titleBtn = 'See more', data, isDisableTippy = fals
                      }}
                   >
                      <li>
-                        <Link className={cx('account-item')}>
+                        <Link className={cx("account-item")}>
                            <Image src="" />
-                           <div className={cx('info')}>
-                              <div className={cx('nickname')}>
+                           <div className={cx("info")}>
+                              <div className={cx("nickname")}>
                                  <span>
                                     jediclasherdddddddddddddddddddddddddddddddddddddddddddddd d
                                  </span>
                                  <CheckedIcon />
                               </div>
-                              <span className={cx('name')}>Jedi CLasher</span>
+                              <span className={cx("name")}>Jedi CLasher</span>
                            </div>
                         </Link>
                      </li>
@@ -58,7 +58,7 @@ function AccountList({ title, titleBtn = 'See more', data, isDisableTippy = fals
                );
             })}
          </ul>
-         <button className={cx('more-btn')}>{titleBtn}</button>
+         <button className={cx("more-btn")}>{titleBtn}</button>
       </div>
    );
 }

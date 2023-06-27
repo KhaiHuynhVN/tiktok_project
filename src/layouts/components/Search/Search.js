@@ -1,11 +1,11 @@
-import HeadLessTippy from '@tippyjs/react/headless';
-import { useRef, useEffect, useReducer } from 'react';
-import classNames from 'classnames/bind';
+import HeadLessTippy from "@tippyjs/react/headless";
+import { useRef, useEffect, useReducer } from "react";
+import classNames from "classnames/bind";
 
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import { RenderAccountItem } from '~/components/AccountItems';
-import { CloseIcon, SearchIcon } from '~/components/Icons';
-import * as services from '~/services';
+import { Wrapper as PopperWrapper } from "~/components/Popper";
+import { RenderAccountItem } from "~/components/AccountItems";
+import { CloseIcon, SearchIcon } from "~/components/Icons";
+import * as services from "~/services";
 import {
    initState,
    reducer,
@@ -13,9 +13,9 @@ import {
    setShowLoading,
    setShowResult,
    setValue,
-} from './useReducer';
+} from "./useReducer";
 
-import styles from './Search.module.scss';
+import styles from "./Search.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -56,12 +56,12 @@ function Search() {
    }, [value]);
 
    const handleInputSearch = (value) => {
-      !value.startsWith(' ') && dispatch(setValue(value));
+      !value.startsWith(" ") && dispatch(setValue(value));
    };
 
    const handleDeleteInputValue = (e) => {
       e.preventDefault();
-      dispatch(setValue(''));
+      dispatch(setValue(""));
       inputSearchEl.current.focus();
       dispatch(setShowResult(false));
       dispatch(setSearchResult([]));
@@ -82,15 +82,18 @@ function Search() {
             interactive
             onClickOutside={() => dispatch(setShowResult(false))}
             render={(attrs) => (
-               <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+               <div className={cx("search-result")} tabIndex="-1" {...attrs}>
                   <PopperWrapper scrollbar>
-                     <span className={cx('search-result-title')}>Accounts</span>
+                     <span className={cx("search-result-title")}>Accounts</span>
                      <RenderAccountItem data={searchResult} />
+                     <span className={cx("search-result-subtitle")}>
+                        View all result for "{value}"
+                     </span>
                   </PopperWrapper>
                </div>
             )}
          >
-            <div className={cx('search')}>
+            <div className={cx("search")}>
                <form>
                   <input
                      ref={inputSearchEl}
@@ -102,16 +105,16 @@ function Search() {
                   />
 
                   {showLoading && (
-                     <i id={cx('loading')} className="fa-solid fa-spinner-third fa-spin"></i>
+                     <i id={cx("loading")} className="fa-solid fa-spinner-third fa-spin"></i>
                   )}
                   {value.trim() && !showLoading && (
-                     <button className={cx('close')} onClick={(e) => handleDeleteInputValue(e)}>
+                     <button className={cx("close")} onClick={(e) => handleDeleteInputValue(e)}>
                         <CloseIcon />
                      </button>
                   )}
-                  <span className={cx('spliter')}></span>
+                  <span className={cx("spliter")}></span>
                   <button
-                     className={cx('btn-search')}
+                     className={cx("btn-search")}
                      onClick={(e) => e.preventDefault()}
                      onMouseDown={(e) => e.preventDefault()}
                   >

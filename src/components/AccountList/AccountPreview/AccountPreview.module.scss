@@ -1,7 +1,8 @@
 .wrapper {
    width: 270px;
    padding: 20px;
-   padding-bottom: 10px;
+   padding-top: calc(20px - 8px);
+   // 8px: padding top Poper Wrapper
 }
 
 .header {
