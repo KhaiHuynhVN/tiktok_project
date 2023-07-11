@@ -1,13 +1,13 @@
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames/bind';
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import { Link } from "react-router-dom";
+import classNames from "classnames/bind";
 
-import Button from '~/components/Button';
-import Menu from '~/components/Popper/Menu';
-import Image from '~/components/Image';
-import Search from '../Search';
-import * as config from '~/config';
+import Button from "~/components/Button";
+import Menu from "~/components/Popper/Menu";
+import Image from "~/components/Image";
+import Search from "../Search";
+import * as config from "~/config";
 
 import {
    CoinIcon,
@@ -19,12 +19,12 @@ import {
    MessageIcon,
    ProfileIcon,
    SettingIcon,
-} from '~/components/Icons';
+} from "~/components/Icons";
 
-import images from '~/assets/images';
+import images from "~/assets/images";
 
-import styles from './Header.module.scss';
-import '~/fontawesome/font-awesome-pro-v6-6.2.0/css/all.min.css';
+import styles from "./Header.module.scss";
+import "~/fontawesome/font-awesome-pro-v6-6.2.0/css/all.min.css";
 
 const cx = classNames.bind(styles);
 
@@ -34,145 +34,145 @@ function Header() {
    const MENU_ITEMS = [
       {
          leftIcon: <LanguageIcon />,
-         title: 'English',
+         title: "English",
          children: {
-            title: 'Language',
+            title: "Language",
             data: [
                {
-                  type: 'language',
-                  code: 'en',
-                  title: 'English',
+                  type: "language",
+                  code: "en",
+                  title: "English",
                },
                {
-                  type: 'language',
-                  code: 'vi',
-                  title: 'Việt Nam',
+                  type: "language",
+                  code: "vi",
+                  title: "Việt Nam",
                   children: {
-                     title: 'Việt Nam',
+                     title: "Việt Nam",
                      data: [
                         {
-                           title: 'Tiếng Nam',
+                           title: "Tiếng Nam",
                         },
                         {
-                           title: 'Tiếng Trung',
+                           title: "Tiếng Trung",
                         },
                         {
-                           title: 'Tiếng Bắc',
+                           title: "Tiếng Bắc",
                         },
                      ],
                   },
                },
                {
-                  type: 'language',
-                  code: 'jav',
-                  title: 'Japan',
+                  type: "language",
+                  code: "jav",
+                  title: "Japan",
                },
                {
-                  type: 'language',
-                  code: 'hq',
-                  title: 'Korea',
+                  type: "language",
+                  code: "hq",
+                  title: "Korea",
                },
                {
-                  type: 'language',
-                  code: 'tl',
-                  title: 'Thailand',
+                  type: "language",
+                  code: "tl",
+                  title: "Thailand",
                },
                {
-                  type: 'language',
-                  code: 'id',
-                  title: 'Indonesia',
+                  type: "language",
+                  code: "id",
+                  title: "Indonesia",
                },
                {
-                  type: 'language',
-                  code: 's',
-                  title: 'Singapore',
+                  type: "language",
+                  code: "s",
+                  title: "Singapore",
                },
                {
-                  type: 'language',
-                  code: 'tl',
-                  title: 'Thailand',
+                  type: "language",
+                  code: "tl",
+                  title: "Thailand",
                },
                {
-                  type: 'language',
-                  code: 'id',
-                  title: 'Indonesia',
+                  type: "language",
+                  code: "id",
+                  title: "Indonesia",
                },
                {
-                  type: 'language',
-                  code: 's',
-                  title: 'Singapore',
+                  type: "language",
+                  code: "s",
+                  title: "Singapore",
                },
                {
-                  type: 'language',
-                  code: 'tl',
-                  title: 'Thailand',
+                  type: "language",
+                  code: "tl",
+                  title: "Thailand",
                },
                {
-                  type: 'language',
-                  code: 'id',
-                  title: 'Indonesia',
+                  type: "language",
+                  code: "id",
+                  title: "Indonesia",
                },
                {
-                  type: 'language',
-                  code: 's',
-                  title: 'Singapore',
+                  type: "language",
+                  code: "s",
+                  title: "Singapore",
                },
                {
-                  type: 'language',
-                  code: 'tl',
-                  title: 'Thailand',
+                  type: "language",
+                  code: "tl",
+                  title: "Thailand",
                },
                {
-                  type: 'language',
-                  code: 'id',
-                  title: 'Indonesia',
+                  type: "language",
+                  code: "id",
+                  title: "Indonesia",
                },
                {
-                  type: 'language',
-                  code: 's',
-                  title: 'Singapore',
+                  type: "language",
+                  code: "s",
+                  title: "Singapore",
                },
                {
-                  type: 'language',
-                  code: 's',
-                  title: 'Singapore',
+                  type: "language",
+                  code: "s",
+                  title: "Singapore",
                },
                {
-                  type: 'language',
-                  code: 'tl',
-                  title: 'Thailand',
+                  type: "language",
+                  code: "tl",
+                  title: "Thailand",
                },
                {
-                  type: 'language',
-                  code: 'id',
-                  title: 'Indonesia',
+                  type: "language",
+                  code: "id",
+                  title: "Indonesia",
                },
                {
-                  type: 'language',
-                  code: 's',
-                  title: 'Singapore',
+                  type: "language",
+                  code: "s",
+                  title: "Singapore",
                },
             ],
          },
       },
       {
          leftIcon: <FeedbackAndHelpIcon />,
-         title: 'Feedback and help',
-         to: '/feedback',
+         title: "Feedback and help",
+         to: "/feedback",
       },
       {
          leftIcon: <KeyboardIcon />,
-         title: 'Keyboard shortcuts',
+         title: "Keyboard shortcuts",
       },
       {
          leftIcon: <DarkModeIcon />,
-         title: 'Dark mode',
+         title: "Dark mode",
          htmls: (
             <button
-               className={cx('switch')}
-               onClick={(e) => e.target.classList.toggle(cx('active'))}
+               className={cx("switch")}
+               onClick={(e) => e.target.classList.toggle(cx("active"))}
             >
-               <div className={cx('circle')}></div>
+               <div className={cx("circle")}></div>
             </button>
          ),
       },
@@ -181,58 +181,58 @@ function Header() {
    const userMenu = [
       {
          leftIcon: <ProfileIcon />,
-         title: 'View profile',
-         to: '/@[your_profile]',
+         title: "View profile",
+         to: "/@[your_profile]",
       },
       {
          leftIcon: <CoinIcon />,
-         title: 'Get Coins',
-         to: '/coins',
+         title: "Get Coins",
+         to: "/coins",
       },
       {
          leftIcon: <SettingIcon />,
-         title: 'Settings',
-         to: '/settings',
+         title: "Settings",
+         to: "/settings",
       },
       ...MENU_ITEMS,
       {
          leftIcon: <LogOutIcon />,
-         title: 'Log out',
-         to: '/logout',
-         className: cx('logout-btn'),
+         title: "Log out",
+         to: "/logout",
+         className: cx("logout-btn"),
       },
    ];
 
    const handleMenuChange = (item, _this) => {
       // eslint-disable-next-line default-case
       switch (item.type) {
-         case 'language':
+         case "language":
             alert(item.title);
       }
 
       // eslint-disable-next-line no-useless-concat
-      const innerEl = _this.querySelector(`.${cx('switch')}`);
+      const innerEl = _this.querySelector(`.${cx("switch")}`);
 
-      innerEl && innerEl.classList.toggle(cx('active'));
+      innerEl && innerEl.classList.toggle(cx("active"));
    };
 
    return (
-      <div className={cx('wrapper')}>
-         <div className={cx('inner')}>
-            <div className={cx('logo')}>
+      <div className={cx("wrapper")}>
+         <div className={cx("inner")}>
+            <div className={cx("logo")}>
                <Link to={config.routes.home}>
                   <Image src={images.logo} alt="Tiktok_logo" />
                </Link>
             </div>
-            <div className={cx('center')}>
+            <div className={cx("center")}>
                <Search />
             </div>
 
-            <div className={cx('actions')}>
+            <div className={cx("actions")}>
                {currentUser ? (
                   <>
                      <Tippy duration={[0, 0]} delay={[0, 100]} placement="bottom" content="Upload">
-                        <Link to={config.routes.upload} className={cx('action-btn')}>
+                        <Link to={config.routes.upload} className={cx("action-btn")}>
                            <i className="fa-regular fa-cloud-arrow-up"></i>
                         </Link>
                      </Tippy>
@@ -242,12 +242,12 @@ function Header() {
                         placement="bottom"
                         content="Messages"
                      >
-                        <button className={cx('action-btn')}>
+                        <button className={cx("action-btn")}>
                            <MessageIcon />
                         </button>
                      </Tippy>
                      <Tippy duration={[0, 0]} delay={[0, 100]} placement="bottom" content="Inbox">
-                        <button className={cx('action-btn')}>
+                        <button className={cx("action-btn")}>
                            <span>10000</span>
                            <i className="fa-regular fa-message-minus"></i>
                         </button>
@@ -265,11 +265,11 @@ function Header() {
                   {currentUser ? (
                      <Image
                         src={images.defaultAvatar}
-                        className={cx('user-avatar')}
+                        className={cx("user-avatar")}
                         alt="user-avatar"
                      />
                   ) : (
-                     <button className={cx('more-btn')}>
+                     <button className={cx("more-btn")}>
                         <i className="fa-solid fa-ellipsis-vertical"></i>
                      </button>
                   )}

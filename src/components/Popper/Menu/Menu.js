@@ -1,19 +1,44 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import classNames from 'classnames/bind';
-import HeadLessTippy from '@tippyjs/react/headless';
+import PropTypes from "prop-types";
+import { useEffect, useRef, useState } from "react";
+import classNames from "classnames/bind";
+import HeadLessTippy from "@tippyjs/react/headless";
+import { useSpring, motion } from "framer-motion";
 
-import { Wrapper as PopperWrapper } from '~/components/Popper/index';
-import MenuItems from './MenuItems';
-import Header from './Header';
+import { Wrapper as PopperWrapper } from "~/components/Popper/index";
+import MenuItems from "./MenuItems";
+import Header from "./Header";
 
-import styles from '~/components/Popper/Menu/Menu.module.scss';
+import styles from "~/components/Popper/Menu/Menu.module.scss";
 
 const cx = classNames.bind(styles);
 
 function Menu({ children, items = [], onChange = () => {} }) {
    const [history, setHistory] = useState([{ data: items }]);
    const current = history[history.length - 1];
+
+   const [isOpen, setIsOpen] = useState(false);
+   const durationClose = 0.3;
+   const variants = {
+      open: { opacity: 1, transition: { duration: 0 } },
+      closed: { opacity: 0, transition: { duration: durationClose } },
+   };
+
+   let unmountTippy = useRef();
+
+   useEffect(() => {
+      return () => {
+         unmountTippy.current && clearTimeout(unmountTippy);
+      };
+   });
+
+   function onMount() {
+      setIsOpen(true);
+   }
+
+   function onHide({ unmount }) {
+      unmountTippy.current = setTimeout(() => unmount(), durationClose * 1000);
+      setIsOpen(false);
+   }
 
    const renderItems = () => {
       return current.data.map((item, index) => {
@@ -35,12 +60,18 @@ function Menu({ children, items = [], onChange = () => {} }) {
    const handleBack = () => setHistory((pre) => pre.slice(0, history.length - 1));
 
    const renderMenu = (attrs) => (
-      <div className={cx('menu')} tabIndex="-1" {...attrs}>
+      <motion.div
+         className={cx("menu")}
+         animate={isOpen ? "open" : "closed"}
+         variants={variants}
+         tabIndex="-1"
+         {...attrs}
+      >
          <PopperWrapper>
-            {history.length > 1 && <Header title={current.title || ''} onClick={handleBack} />}
-            <div className={cx({ 'menu-container': history.length > 1 })}>{renderItems()}</div>
+            {history.length > 1 && <Header title={current.title || ""} onClick={handleBack} />}
+            <div className={cx({ "menu-container": history.length > 1 })}>{renderItems()}</div>
          </PopperWrapper>
-      </div>
+      </motion.div>
    );
 
    const handleResetMenu = () => setHistory((pre) => [pre[0]]);
@@ -51,11 +82,16 @@ function Menu({ children, items = [], onChange = () => {} }) {
          <HeadLessTippy
             hideOnClick={false}
             interactive
-            delay={[0, 600]}
+            delay={[0, 700]}
             offset={[20, 12]}
             placement="bottom-end"
+            animation={true}
             render={renderMenu}
-            onHidden={handleResetMenu}
+            onMount={onMount}
+            onHide={(e) => {
+               handleResetMenu();
+               onHide(e);
+            }}
          >
             {children}
          </HeadLessTippy>

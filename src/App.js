@@ -1,7 +1,7 @@
 // import { useState, Fragment } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { publicRoutes } from './routes';
-import { DefaultLayout } from './layouts';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { publicRoutes } from "./routes";
+import { DefaultLayout } from "./layouts";
 
 function App() {
    return (
@@ -20,19 +20,19 @@ function App() {
                            <Layout>
                               <Page />
                               <button>
-                                 <Link to={'/'}>Trang Home</Link>
+                                 <Link to={"/"}>Trang Home</Link>
                               </button>
                               <button>
-                                 <Link to={'/following'}>Trang Following</Link>
+                                 <Link to={"/following"}>Trang Following</Link>
                               </button>
                               <button>
-                                 <Link to={'/profile'}>Trang Profile</Link>
+                                 <Link to={"/profile"}>Trang Profile</Link>
                               </button>
                               <button>
-                                 <Link to={'/search'}>Trang Search</Link>
+                                 <Link to={"/search"}>Trang Search</Link>
                               </button>
                               <button>
-                                 <Link to={'/upload'}>Trang Upload</Link>
+                                 <Link to={"/upload"}>Trang Upload</Link>
                               </button>
                            </Layout>
                         }

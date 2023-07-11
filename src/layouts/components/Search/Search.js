@@ -1,76 +1,75 @@
 import HeadLessTippy from "@tippyjs/react/headless";
-import { useRef, useEffect, useReducer } from "react";
+import { useRef, useEffect } from "react";
 import classNames from "classnames/bind";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import { RenderAccountItem } from "~/components/AccountItems";
 import { CloseIcon, SearchIcon } from "~/components/Icons";
 import * as services from "~/services";
-import {
-   initState,
-   reducer,
-   setSearchResult,
-   setShowLoading,
-   setShowResult,
-   setValue,
-} from "./useReducer";
+import * as selector from "~/store/selector";
+import searchSlice from "./searchSlice";
 
 import styles from "./Search.module.scss";
 
 const cx = classNames.bind(styles);
 
 function Search() {
-   const [state, dispatch] = useReducer(reducer, initState);
-   const { value, searchResult, showLoading, showResult } = state;
+   const dispatch = useDispatch();
+   const value = useSelector(selector.value);
+   const searchResult = useSelector(selector.searchResult);
+   const showLoading = useSelector(selector.showLoading);
+   const showResult = useSelector(selector.showResult);
 
-   let timer;
+   const timer = useRef();
 
    const inputSearchEl = useRef();
 
    useEffect(() => {
       if (!value.trim()) {
-         dispatch(setShowResult(false));
-         dispatch(setSearchResult([]));
-         dispatch(setShowLoading(false));
+         dispatch(searchSlice.actions.setShowResult(false));
+         dispatch(searchSlice.actions.setSearchResult([]));
+         dispatch(searchSlice.actions.setShowLoading(false));
          return;
       }
 
-      dispatch(setShowResult(true));
+      dispatch(searchSlice.actions.setShowResult(true));
 
       const fetchApi = async () => {
-         dispatch(setShowLoading(true));
-         dispatch(setSearchResult([]));
+         dispatch(searchSlice.actions.setShowLoading(true));
+         dispatch(searchSlice.actions.setSearchResult([]));
 
          const result = await services.search(value);
-         inputSearchEl.current.value.trim() && dispatch(setSearchResult(result));
+         value.trim() && dispatch(searchSlice.actions.setSearchResult(result));
 
-         dispatch(setShowLoading(false));
+         dispatch(searchSlice.actions.setShowLoading(false));
       };
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      timer = setTimeout(() => {
+      timer.current = setTimeout(() => {
          fetchApi();
       }, 700);
 
-      return () => clearTimeout(timer);
+      return () => {
+         clearTimeout(timer.current);
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [value]);
 
    const handleInputSearch = (value) => {
-      !value.startsWith(" ") && dispatch(setValue(value));
+      !value.startsWith(" ") && dispatch(searchSlice.actions.setValue(value));
    };
 
    const handleDeleteInputValue = (e) => {
       e.preventDefault();
-      dispatch(setValue(""));
+      dispatch(searchSlice.actions.setValue(""));
       inputSearchEl.current.focus();
-      dispatch(setShowResult(false));
-      dispatch(setSearchResult([]));
+      dispatch(searchSlice.actions.setShowResult(false));
+      dispatch(searchSlice.actions.setSearchResult([]));
    };
 
    const handleFocusInputSearch = () => {
-      inputSearchEl.current.value.trim() &&
-         searchResult.length > 0 &&
-         dispatch(setShowResult(true));
+      value.trim() && searchResult.length && dispatch(searchSlice.actions.setShowResult(true));
    };
 
    return (
@@ -80,7 +79,7 @@ function Search() {
             visible={showResult && searchResult.length > 0}
             offset={[0, 8]}
             interactive
-            onClickOutside={() => dispatch(setShowResult(false))}
+            onClickOutside={() => dispatch(searchSlice.actions.setShowResult(false))}
             render={(attrs) => (
                <div className={cx("search-result")} tabIndex="-1" {...attrs}>
                   <PopperWrapper scrollbar>
