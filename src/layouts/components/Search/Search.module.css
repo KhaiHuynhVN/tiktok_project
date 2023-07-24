@@ -89,6 +89,17 @@
   padding: 9px 16px;
 }
 
+.search-result-subtitle {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.search-result-subtitle:hover {
+  background: var(--hover-effect);
+}
+
 .search-result {
   width: var(--default-layout-header-center-width);
   padding: 0 8px;
