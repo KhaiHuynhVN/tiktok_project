@@ -19,7 +19,7 @@ function AccountItems({ data }) {
    };
 
    return (
-      <Link to={`/@${data.nickname}`} className={cx("wrapper")} onClick={handleClick}>
+      <Link to={`/user/@${data.nickname}`} className={cx("wrapper")} onClick={handleClick}>
          <div className={cx("account-container")}>
             <li>
                <Image className={cx("avatar")} alt={data.full_name} src={data.avatar} />
