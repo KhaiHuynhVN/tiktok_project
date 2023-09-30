@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import HeadLessTippy from "@tippyjs/react/headless";
-import { useSpring, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { Wrapper as PopperWrapper } from "~/components/Popper/index";
 import MenuItems from "./MenuItems";
@@ -27,7 +27,7 @@ function Menu({ children, items = [], onChange = () => {} }) {
 
    useEffect(() => {
       return () => {
-         unmountTippy.current && clearTimeout(unmountTippy);
+         unmountTippy.current && clearTimeout(unmountTippy.current);
       };
    });
 
@@ -36,8 +36,10 @@ function Menu({ children, items = [], onChange = () => {} }) {
    }
 
    function onHide({ unmount }) {
-      unmountTippy.current = setTimeout(() => unmount(), durationClose * 1000);
-      setIsOpen(false);
+      unmountTippy.current = setTimeout(() => {
+         unmount();
+         setIsOpen(false);
+      }, durationClose * 1000);
    }
 
    const renderItems = () => {
